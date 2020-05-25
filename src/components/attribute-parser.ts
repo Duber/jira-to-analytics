@@ -26,17 +26,11 @@ const parseAttributeArray = (attributeArray: Array<any>): string => {
 
 const getAttributes = (fields: any, attributesRequested: string[]): { [val: string]: string } => {
   return attributesRequested.reduce((attributesMap, attributeSystemName) => {
-    const attributeData: any = fields[attributeSystemName];
-
-    let subAttribute: string = null;
-    if (attributeSystemName.startsWith('customfield_') && attributeSystemName.split('.').length > 1) {
-      const multipartAttribute: string[] = attributeSystemName.split('.');
-      subAttribute = multipartAttribute[1];
-    }
+    const attributeData: any = attributeSystemName.split('.').reduce((prev,next) => prev && prev[next] || null, fields)
 
     const parsed: string = Array.isArray(attributeData)
       ? parseAttributeArray(attributeData)
-      : parseAttribute(attributeData, subAttribute); // subattribute only supported for nonarrays currently
+      : parseAttribute(attributeData);
 
     attributesMap[attributeSystemName] = parsed;
     return attributesMap;
