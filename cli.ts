@@ -33,13 +33,13 @@ const writeFile = (filePath: string, data: any) =>
   });
 
 const getPassword = async (): Promise<string> => {
-  const passwordQuestion = {
+  const passwordQuestion = [{
     message: 'Enter your JIRA password: ',
     type: 'password',
     name: 'password'
-  };
+  }];
   const answers = await prompt(passwordQuestion);
-  const password: string = answers['password'];
+  const password: string = answers[0]['password'];
   return password;
 };
 
