@@ -52,11 +52,11 @@ const buildJQL = (options: JQLOptions): string => {
   if (startDate && endDate) {
     const dateToExcludeStoriesBefore = startDate;
     const dateToExcludeStoriesAfter = endDate;
-    const dateFilterQuery = `((resolutionDate >= "${formatDate(dateToExcludeStoriesBefore)}" OR resolution = Unresolved) OR (resolutionDate <= "${formatDate(dateToExcludeStoriesAfter)}"))`;
+    const dateFilterQuery = `((resolutionDate >= "${formatDate(dateToExcludeStoriesBefore)}") OR (resolutionDate <= "${formatDate(dateToExcludeStoriesAfter)}"))`;
     clauses.push(dateFilterQuery);
   } else if (startDate) {
     const dateToExcludeStoriesBefore = startDate;
-    const excludeAllStoriesClosedAfterDateClause = `(resolutionDate >= "${formatDate(dateToExcludeStoriesBefore)}" OR resolution = Unresolved)`;
+    const excludeAllStoriesClosedAfterDateClause = `(resolutionDate >= "${formatDate(dateToExcludeStoriesBefore)}")`;
     clauses.push(excludeAllStoriesClosedAfterDateClause);
   } else if (endDate) {
     const dateToExcludeStoriesAfter = endDate;
