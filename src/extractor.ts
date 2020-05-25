@@ -59,7 +59,7 @@ class JiraExtractor {
     }
 
     if (!testResponse.total) {
-      throw new Error(`Error calling JIRA API at the following url:\n${queryUrl}\n using JQL: ${jql}`);
+      throw new Error(`Error calling JIRA API at the following url:\n${queryUrl}\n using JQL: ${jql}. Error: ${testResponse}`);
     }
     return true;
   }
